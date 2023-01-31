@@ -15,6 +15,8 @@
     "@acme/auth": "*",
     "@acme/db": "*",
     "@acme/tailwind-config": "*",
+    "@clerk/nextjs": "^4.8.1",
+    "@clerk/themes": "^1.2.40",
     "@tanstack/react-query": "^4.23.0",
     "@trpc/client": "^10.9.0",
     "@trpc/next": "^10.9.0",

@@ -11,63 +11,6 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Post {
-    id      String @id @default(cuid())
-    title   String
-    content String
-}
-
-// NextAuth.js Models
-// NOTE: When using postgresql, mysql or sqlserver, 
-// uncomment the @db.Text annotations below
-// @see https://next-auth.js.org/schemas/models
-model Account {
-    id                String  @id @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? // @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@unique([provider, providerAccountId])
-    @@index([userId])
-}
-
-model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-    @@index([userId])
-}
-
-model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-}
-
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
-
-    @@unique([identifier, token])
-}
-
 model Company {
   id        String   @id @default(cuid())
   name      String
@@ -75,7 +18,6 @@ model Company {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   events    Event[]
-  Item      Item[]
 }
 
 model Player {
@@ -85,12 +27,12 @@ model Player {
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   PlayerHasEvent PlayerHasEvent[]
-  Purchase       Purchase[]
 }
 
 model Event {
   id          String   @id @default(cuid())
   name        String
+  description String
   score       Int
   initialDate DateTime
   finalDate   DateTime
@@ -120,40 +62,12 @@ model Achievement {
 model PlayerHasEvent {
   playerId String
   eventId  String
+  score Int
 
   event  Event   @relation(fields: [eventId], references: [id])
   player Player  @relation(fields: [playerId], references: [id])
-  userId String?
 
   @@id([playerId, eventId])
   @@index([eventId])
   @@index([playerId])
-}
-
-model Item {
-  id        String   @id @default(cuid())
-  name      String
-  slug      String
-  companyId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  company  Company    @relation(fields: [companyId], references: [id])
-  Purchase Purchase[]
-
-  @@index([companyId])
-}
-
-model Purchase {
-  id        String   @id @default(cuid())
-  playerId  String
-  itemId    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  player Player @relation(fields: [playerId], references: [id])
-  item   Item   @relation(fields: [itemId], references: [id])
-
-  @@index([playerId])
-  @@index([itemId])
 }

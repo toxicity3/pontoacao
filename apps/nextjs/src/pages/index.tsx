@@ -4,14 +4,7 @@ import Head from 'next/head';
 import { signIn, signOut } from 'next-auth/react';
 
 import { api, type RouterOutputs } from '~/utils/api';
-import NavigationMenuDemo, {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '../../components/navigation-menu/NavigationMenu';
+import { NavigationMenuDemo } from '../components/NavigationMenuDemo';
 
 const PostCard: React.FC<{
   post: RouterOutputs['post']['all'][number];

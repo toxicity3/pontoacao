@@ -122,6 +122,7 @@ importers:
       slug: ^8.2.2
       tailwind-merge: ^1.9.0
       tailwindcss: ^3.2.4
+      tailwindcss-animate: ^1.0.5
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
@@ -149,6 +150,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       slug: 8.2.2
       tailwind-merge: 1.9.0
+      tailwindcss-animate: 1.0.5_tailwindcss@3.2.4
       zod: 3.20.2
     devDependencies:
       '@types/node': 18.11.18
@@ -9372,6 +9374,14 @@ packages:
 
   /tailwind-merge/1.9.0:
     resolution: {integrity: sha512-coziXxViLHbVtFvD1+jwSu+UmDJSFX4dhj9ZuqHCuhTzu9Wk5wMedAz5AVY3uUYw95TaO7NwgUS/dLGcWvtgqw==}
+    dev: false
+
+  /tailwindcss-animate/1.0.5_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-UU3qrOJ4lFQABY+MVADmBm+0KW3xZyhMdRvejwtXqYOL7YjHYxmuREFAZdmVG5LPe5E9CAst846SLC4j5I3dcw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.2.4_postcss@8.4.21
     dev: false
 
   /tailwindcss/3.2.4_postcss@8.4.21:

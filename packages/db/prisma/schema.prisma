@@ -37,6 +37,7 @@ model Account {
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@index([userId])
 }
 
 model Session {
@@ -45,6 +46,8 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
 }
 
 model User {
@@ -63,4 +66,94 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  events    Event[]
+  Item      Item[]
+}
+
+model Player {
+  id             String           @id
+  name           String
+  slug           String
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  PlayerHasEvent PlayerHasEvent[]
+  Purchase       Purchase[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  name        String
+  score       Int
+  initialDate DateTime
+  finalDate   DateTime
+  slug        String
+  companyId   String
+
+  company        Company          @relation(fields: [companyId], references: [id])
+  PlayerHasEvent PlayerHasEvent[]
+  Achievement    Achievement[]
+
+  @@index([companyId])
+}
+
+model Achievement {
+  id        String @id @default(cuid())
+  name      String
+  slug      String
+  eventId   String
+  createdAt String
+  updatedAt String
+
+  event Event @relation(fields: [eventId], references: [id])
+
+  @@index([eventId])
+}
+
+model PlayerHasEvent {
+  playerId String
+  eventId  String
+
+  event  Event   @relation(fields: [eventId], references: [id])
+  player Player  @relation(fields: [playerId], references: [id])
+  userId String?
+
+  @@id([playerId, eventId])
+  @@index([eventId])
+  @@index([playerId])
+}
+
+model Item {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String
+  companyId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  company  Company    @relation(fields: [companyId], references: [id])
+  Purchase Purchase[]
+
+  @@index([companyId])
+}
+
+model Purchase {
+  id        String   @id @default(cuid())
+  playerId  String
+  itemId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  player Player @relation(fields: [playerId], references: [id])
+  item   Item   @relation(fields: [itemId], references: [id])
+
+  @@index([playerId])
+  @@index([itemId])
 }

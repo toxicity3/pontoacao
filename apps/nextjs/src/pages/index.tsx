@@ -1,12 +1,20 @@
-import { useState } from "react";
-import type { NextPage } from "next";
-import Head from "next/head";
-import { signIn, signOut } from "next-auth/react";
+import { useState } from 'react';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { signIn, signOut } from 'next-auth/react';
 
-import { api, type RouterOutputs } from "~/utils/api";
+import { api, type RouterOutputs } from '~/utils/api';
+import NavigationMenuDemo, {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '../../components/navigation-menu/NavigationMenu';
 
 const PostCard: React.FC<{
-  post: RouterOutputs["post"]["all"][number];
+  post: RouterOutputs['post']['all'][number];
   onPostDelete?: () => void;
 }> = ({ post, onPostDelete }) => {
   return (
@@ -32,13 +40,13 @@ const PostCard: React.FC<{
 const CreatePostForm: React.FC = () => {
   const utils = api.useContext();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
 
   const { mutate } = api.post.create.useMutation({
     async onSuccess() {
-      setTitle("");
-      setContent("");
+      setTitle('');
+      setContent('');
       await utils.post.all.invalidate();
     },
   });
@@ -95,6 +103,8 @@ const Home: NextPage = () => {
 
           <CreatePostForm />
 
+          <NavigationMenuDemo />
+
           {postQuery.data ? (
             <div>
               {postQuery.data?.length === 0 ? (
@@ -146,7 +156,7 @@ const AuthShowcase: React.FC = () => {
         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
         onClick={session ? () => void signOut() : () => void signIn()}
       >
-        {session ? "Sign out" : "Sign in"}
+        {session ? 'Sign out' : 'Sign in'}
       </button>
     </div>
   );

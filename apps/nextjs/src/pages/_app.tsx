@@ -19,9 +19,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       {...pageProps}
     >
       <SessionProvider session={session}>
-        <div className="container mx-auto flex items-center justify-center h-screen">
-          <Component {...pageProps} />
-        </div>
+        <Component {...pageProps} />
       </SessionProvider>
     </ClerkProvider>
   );

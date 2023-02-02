@@ -9,13 +9,13 @@ interface GenericLayoutProps {
   className?: string;
 }
 
-export function ThemeSetter(): JSX.Element {
+export function ThemeSetter(): null {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setTheme('dark');
   }, [theme, setTheme]);
-  return <></>;
+  return null;
 }
 
 export function GenericLayout({

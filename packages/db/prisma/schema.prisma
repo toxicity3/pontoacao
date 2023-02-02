@@ -18,6 +18,30 @@ model Company {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   events    Event[]
+  employees Employee[]
+}
+
+model Employee {
+  id       String   @id @default(cuid())
+  email String
+  companyId String
+  roleId    String
+
+  company Company @relation(fields: [companyId], references: [id])
+  role    Role    @relation(fields: [roleId], references: [id])
+
+  @@index([companyId])
+  @@index([roleId])
+}
+
+model Role {
+  id       String   @id @default(cuid())
+  name     String
+  slug     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employees Employee[]
 }
 
 model Player {

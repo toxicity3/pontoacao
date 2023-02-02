@@ -1,9 +1,21 @@
+import { useEffect } from 'react';
+import { useTheme } from 'next-themes';
+
 import { ThemeProvider } from '~/components/ThemeProvider';
 import { cn } from '~/utils/utils';
 
 interface GenericLayoutProps {
   children: React.ReactNode;
   className?: string;
+}
+
+export function ThemeSetter(): JSX.Element {
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme('dark');
+  }, [theme, setTheme]);
+  return <></>;
 }
 
 export function GenericLayout({
@@ -17,7 +29,14 @@ export function GenericLayout({
         className,
       )}
     >
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="dark"
+        forcedTheme="dark"
+        enableSystem={false}
+        enableColorScheme={false}
+      >
+        <ThemeSetter />
         {children}
       </ThemeProvider>
     </main>

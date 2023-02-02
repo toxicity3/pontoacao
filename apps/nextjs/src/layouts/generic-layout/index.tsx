@@ -1,3 +1,4 @@
+import { ThemeProvider } from '~/components/ThemeProvider';
 import { cn } from '~/utils/utils';
 
 interface GenericLayoutProps {
@@ -16,7 +17,9 @@ export function GenericLayout({
         className,
       )}
     >
-      {children}
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </ThemeProvider>
     </main>
   );
 }

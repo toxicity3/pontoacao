@@ -119,6 +119,7 @@ importers:
       next: ^13.1.6
       next-auth: ^4.19.0
       next-better-api: ^0.1.5
+      next-themes: ^0.2.1
       postcss: ^8.4.21
       quirrel: ^1.13.1
       react: 18.2.0
@@ -152,6 +153,7 @@ importers:
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.1_3vryta7zmbcsw4rrqf4axjqggm
       next-better-api: 0.1.5_next@13.1.6+zod@3.20.2
+      next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
       quirrel: 1.13.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -8307,6 +8309,18 @@ packages:
     dependencies:
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       zod: 3.20.2
+    dev: false
+
+  /next-themes/0.2.1_3vryta7zmbcsw4rrqf4axjqggm:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /next/13.1.6_biqbaboplfbrettd7655fr4n2y:

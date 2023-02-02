@@ -6,7 +6,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  if (req.method !== 'GET') {
+    return res.status(501).end();
+  }
   const { userId } = getAuth(req);
+
   if (!userId) {
     return res.redirect(307, '/sign-in');
   }

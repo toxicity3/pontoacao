@@ -5,7 +5,7 @@ const SignInPage = () => (
     path="/sign-in"
     routing="path"
     signUpUrl="/sign-in"
-    redirectUrl="/api/login-callback"
+    redirectUrl="/api/login"
   />
 );
 

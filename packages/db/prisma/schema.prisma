@@ -70,6 +70,7 @@ model Event {
   initialDate DateTime?
   finalDate   DateTime?
   limit       Int?
+  limitPerPlayer Int?
   slug        String
   companyId   String
   createdAt   DateTime @default(now())
@@ -96,6 +97,7 @@ model Achievement {
 }
 
 model PlayerHasEvent {
+  id  String @id @default(cuid())
   playerId String
   eventId  String
   score Int
@@ -105,7 +107,6 @@ model PlayerHasEvent {
   event  Event   @relation(fields: [eventId], references: [id])
   player Player  @relation(fields: [playerId], references: [id])
 
-  @@id([playerId, eventId])
   @@index([eventId])
   @@index([playerId])
 }

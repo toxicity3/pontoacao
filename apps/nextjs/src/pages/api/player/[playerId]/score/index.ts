@@ -85,13 +85,11 @@ const scoredEvent = endpoint(
     }
 
     if (event.limit) {
-      console.log('event.limit', event.limit);
       const playersQuantityInThisEvent = await prisma.playerHasEvent.count({
         where: {
           eventId,
         },
       });
-      console.log('playersQuantityInThisEvent', playersQuantityInThisEvent);
 
       if (playersQuantityInThisEvent >= event.limit) {
         return {
@@ -99,6 +97,25 @@ const scoredEvent = endpoint(
           body: {
             message: `Event with id ${eventId} has reached the limit of players`,
             errorCode: 'EVENT_LIMIT_REACHED',
+          },
+        };
+      }
+    }
+
+    if (event.limitPerPlayer) {
+      const playersQuantityInThisEvent = await prisma.playerHasEvent.count({
+        where: {
+          eventId,
+          playerId,
+        },
+      });
+
+      if (playersQuantityInThisEvent >= event.limitPerPlayer) {
+        return {
+          status: 400,
+          body: {
+            message: `Player with id ${playerId} has reached the limit of times on this event`,
+            errorCode: 'EVENT_PLAYER_LIMIT_REACHED',
           },
         };
       }

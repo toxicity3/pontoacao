@@ -3,15 +3,6 @@ import { z } from 'zod';
 
 import { createTRPCRouter, publicProcedure } from '../trpc';
 
-z.object({
-  name: z.string(),
-  description: z.string().optional(),
-  initialDate: z.date().optional(),
-  finalDate: z.date().optional(),
-  limit: z.number().optional(),
-  limitPerPlayer: z.number().optional(),
-  score: z.number().min(1),
-});
 export const eventRouter = createTRPCRouter({
   create: publicProcedure
     .input(
@@ -51,9 +42,9 @@ export const eventRouter = createTRPCRouter({
         },
       });
     }),
-  findById: publicProcedure.input(z.string()).query(({ ctx, input }) => {
+  findById: publicProcedure.input(z.string()).query(async ({ ctx, input }) => {
     // testing type validation of overridden next-auth Session in @acme/auth package
-    return ctx.prisma.event.findUnique({
+    return await ctx.prisma.event.findUnique({
       where: {
         id: input,
       },
@@ -65,6 +56,17 @@ export const eventRouter = createTRPCRouter({
       return await ctx.prisma.event.findMany({
         where: {
           companyId: input,
+        },
+      });
+    }),
+
+  getByIdAndCompanyId: publicProcedure
+    .input(z.object({ id: z.string(), companyId: z.string() }))
+    .query(async ({ ctx, input: { id, companyId } }) => {
+      return await ctx.prisma.event.findFirst({
+        where: {
+          id,
+          companyId,
         },
       });
     }),

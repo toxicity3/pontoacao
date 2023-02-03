@@ -1,3 +1,4 @@
+import { getAuth } from '@clerk/nextjs/server';
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1)
@@ -9,7 +10,6 @@
 import { TRPCError, initTRPC } from '@trpc/server';
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 import superjson from 'superjson';
-import { getServerSession, type Session } from '@acme/auth';
 import { prisma } from '@acme/db';
 
 /**
@@ -22,7 +22,7 @@ import { prisma } from '@acme/db';
  *
  */
 type CreateContextOptions = {
-  session: Session | null;
+  session: Awaited<ReturnType<typeof getAuth>> | null;
 };
 
 /**
@@ -34,9 +34,9 @@ type CreateContextOptions = {
  * - trpc's `createSSGHelpers` where we don't have req/res
  * @see https://create.t3.gg/en/usage/trpc#-servertrpccontextts
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
+const createInnerTRPCContext = ({ session }: CreateContextOptions) => {
   return {
-    session: opts.session,
+    session,
     prisma,
   };
 };
@@ -47,10 +47,10 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  * @link https://trpc.io/docs/context
  */
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
+  const { req } = opts;
 
   // Get the session from the server using the unstable_getServerSession wrapper function
-  const session = await getServerSession({ req, res });
+  const session = getAuth(req);
 
   return createInnerTRPCContext({
     session,

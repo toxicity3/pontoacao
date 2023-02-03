@@ -1,9 +1,9 @@
-import slug from 'slug';
+import slugify from 'slugify';
 import { z } from 'zod';
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from '../trpc';
+import { createTRPCRouter, publicProcedure } from '../trpc';
 
-export const eventRouter = createTRPCRouter({
+export const playerRouter = createTRPCRouter({
   achievedEvent: publicProcedure
     .input(z.object({ playerId: z.string(), eventId: z.string() }))
     .mutation(async ({ ctx, input }) => {

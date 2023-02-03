@@ -1,4 +1,4 @@
-import { EventPayload, NonRetriableError, createFunction } from 'inngest';
+import { NonRetriableError, createFunction } from 'inngest';
 import { prisma } from '@acme/db';
 
 export const playerScoredEvent = createFunction(

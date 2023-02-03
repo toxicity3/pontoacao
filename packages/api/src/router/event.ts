@@ -1,19 +1,53 @@
-import { protectedProcedure, publicProcedure, createTRPCRouter } from "../trpc";
-import { z } from "zod";
-import slug from "slug";
+import slugify from 'slugify';
+import { z } from 'zod';
 
+import { createTRPCRouter, publicProcedure } from '../trpc';
+
+z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  initialDate: z.date().optional(),
+  finalDate: z.date().optional(),
+  limit: z.number().optional(),
+  limitPerPlayer: z.number().optional(),
+  score: z.number().min(1),
+});
 export const eventRouter = createTRPCRouter({
   create: publicProcedure
     .input(
-      z.object({ name: z.string(), companyId: z.string(), score: z.number() }),
+      z.object({
+        name: z.string(),
+        description: z.string().optional(),
+        initialDate: z.date().optional(),
+        finalDate: z.date().optional(),
+        limit: z.number().optional(),
+        limitPerPlayer: z.number().optional(),
+        score: z.number().min(1),
+        companyId: z.string(),
+      }),
     )
     .mutation(async ({ ctx, input }) => {
-      return ctx.prisma.event.create({
+      const {
+        name,
+        description,
+        initialDate,
+        finalDate,
+        limit,
+        limitPerPlayer,
+        score,
+        companyId,
+      } = input;
+      return await ctx.prisma.event.create({
         data: {
-          name: input.name,
-          companyId: input.companyId,
-          slug: slug(input.name),
-          score: input.score,
+          companyId,
+          name,
+          slug: slugify(name),
+          description: description || '',
+          initialDate,
+          finalDate,
+          limit,
+          limitPerPlayer,
+          score,
         },
       });
     }),
@@ -25,11 +59,13 @@ export const eventRouter = createTRPCRouter({
       },
     });
   }),
-  getByCompanyId: publicProcedure.input(z.string()).query(({ ctx, input }) => {
-    return ctx.prisma.event.findMany({
-      where: {
-        companyId: input,
-      },
-    });
-  }),
+  getByCompanyId: publicProcedure
+    .input(z.string())
+    .query(async ({ ctx, input }) => {
+      return await ctx.prisma.event.findMany({
+        where: {
+          companyId: input,
+        },
+      });
+    }),
 });

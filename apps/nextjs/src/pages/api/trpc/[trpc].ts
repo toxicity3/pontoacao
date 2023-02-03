@@ -1,5 +1,11 @@
-import { createNextApiHandler } from "@trpc/server/adapters/next";
-import { appRouter, createTRPCContext } from "@acme/api";
+import { createNextApiHandler } from '@trpc/server/adapters/next';
+import { appRouter, createTRPCContext } from '@acme/api';
+import { prisma } from '@acme/db';
+
+export const trpcCaller = appRouter.createCaller({
+  prisma,
+  session: null,
+});
 
 // export API handler
 export default createNextApiHandler({

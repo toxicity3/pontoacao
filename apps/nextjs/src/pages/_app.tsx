@@ -4,13 +4,12 @@ import { ptBR } from '@clerk/localizations';
 import { ClerkProvider } from '@clerk/nextjs';
 import { dark } from '@clerk/themes';
 import type { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
 
 import { api } from '~/utils/api';
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: { ...pageProps },
 }) => {
   return (
     <ClerkProvider
@@ -18,9 +17,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       appearance={{ baseTheme: dark }}
       {...pageProps}
     >
-      <SessionProvider session={session}>
-        <Component {...pageProps} />
-      </SessionProvider>
+      <Component {...pageProps} />
     </ClerkProvider>
   );
 };

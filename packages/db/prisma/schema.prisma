@@ -3,6 +3,7 @@
 
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["filteredRelationCount"]
 }
 
 datasource db {
@@ -68,6 +69,7 @@ model Event {
   score       Int
   initialDate DateTime?
   finalDate   DateTime?
+  limit       Int?
   slug        String
   companyId   String
   createdAt   DateTime @default(now())

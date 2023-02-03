@@ -27,6 +27,24 @@ const scoredEvent = endpoint(
     const companyId = 'cldokpav3000067ld7fabdew2';
     const { playerId } = query;
     const { eventId } = body;
+
+    const player = await prisma.player.findFirst({
+      where: {
+        id: playerId,
+        companyId,
+      },
+    });
+
+    if (!player) {
+      return {
+        status: 404,
+        body: {
+          message: `Player with id ${playerId} not found`,
+          errorCode: 'PLAYER_NOT_FOUND',
+        },
+      };
+    }
+
     const event = await prisma.event.findFirst({
       where: {
         id: eventId,
@@ -44,21 +62,46 @@ const scoredEvent = endpoint(
       };
     }
 
-    const player = await prisma.player.findFirst({
-      where: {
-        id: playerId,
-        companyId,
-      },
-    });
+    const today = new Date();
 
-    if (!player) {
+    if (event.initialDate && today < event.initialDate) {
       return {
-        status: 404,
+        status: 400,
         body: {
-          message: `Player with id ${playerId} not found`,
-          errorCode: 'PLAYER_NOT_FOUND',
+          message: `Event with id ${eventId} has not started yet`,
+          errorCode: 'EVENT_NOT_STARTED',
         },
       };
+    }
+
+    if (event.finalDate && today > event.finalDate) {
+      return {
+        status: 400,
+        body: {
+          message: `Event with id ${eventId} has already ended`,
+          errorCode: 'EVENT_ALREADY_ENDED',
+        },
+      };
+    }
+
+    if (event.limit) {
+      console.log('event.limit', event.limit);
+      const playersQuantityInThisEvent = await prisma.playerHasEvent.count({
+        where: {
+          eventId,
+        },
+      });
+      console.log('playersQuantityInThisEvent', playersQuantityInThisEvent);
+
+      if (playersQuantityInThisEvent >= event.limit) {
+        return {
+          status: 400,
+          body: {
+            message: `Event with id ${eventId} has reached the limit of players`,
+            errorCode: 'EVENT_LIMIT_REACHED',
+          },
+        };
+      }
     }
 
     await inngest.send({

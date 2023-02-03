@@ -1,9 +1,9 @@
 import { Queue } from 'quirrel/next';
 
 interface EventQueueJob {
-  eventName: string;
+  eventId: string;
   companyId: string;
-  userEmail: string;
+  playerId: string;
 }
 
 export default Queue<EventQueueJob>(

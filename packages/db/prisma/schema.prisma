@@ -19,6 +19,7 @@ model Company {
   updatedAt DateTime @updatedAt
   events    Event[]
   employees Employee[]
+  players   Player[]
 }
 
 model Employee {
@@ -48,9 +49,14 @@ model Player {
   id             String           @id
   name           String
   slug           String
+  companyId      String
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
   PlayerHasEvent PlayerHasEvent[]
+  company        Company          @relation(fields: [companyId], references: [id])
+
+
+  @@index([companyId])
 }
 
 model Event {

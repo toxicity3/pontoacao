@@ -1,15 +1,18 @@
+import { Inngest } from 'inngest';
 import { asHandler, endpoint } from 'next-better-api';
 import { z } from 'zod';
 import { prisma } from '@acme/db';
 
-import EventQueue from '~/pages/api/queues/event';
+const inngest = new Inngest({ name: 'My App' });
 
 const scoredEvent = endpoint(
   {
     method: 'post',
     querySchema: z.object({
-      eventName: z.string(),
-      userEmail: z.string(),
+      playerId: z.string(),
+    }),
+    bodySchema: z.object({
+      eventId: z.string(),
     }),
     responseSchema: z.union([
       z.object({
@@ -19,14 +22,15 @@ const scoredEvent = endpoint(
       z.undefined(),
     ]),
   },
-  async ({ query }) => {
+  async ({ query, body }) => {
     // TODO: Criar método pra autenticação sistemica
     // pegar companyId do token da requisição
-    const companyId = 'algum numero';
-    const { eventName, userEmail } = query;
+    const companyId = 'cldokpav3000067ld7fabdew2';
+    const { playerId } = query;
+    const { eventId } = body;
     const event = await prisma.event.findFirst({
       where: {
-        name: eventName,
+        id: eventId,
         companyId,
       },
     });
@@ -35,33 +39,37 @@ const scoredEvent = endpoint(
       return {
         status: 404,
         body: {
-          message: `Event with name ${eventName} not found`,
+          message: `Event with id ${eventId} not found`,
           errorCode: 'EVENT_NOT_FOUND',
         },
       };
     }
 
-    const user = await prisma.employee.findFirst({
+    const player = await prisma.player.findFirst({
       where: {
-        email: userEmail,
+        id: playerId,
         companyId,
       },
     });
 
-    if (!user) {
+    if (!player) {
       return {
         status: 404,
         body: {
-          message: `User with email ${userEmail} not found`,
-          errorCode: 'USER_NOT_FOUND',
+          message: `Player with id ${playerId} not found`,
+          errorCode: 'PLAYER_NOT_FOUND',
         },
       };
     }
 
-    await EventQueue.enqueue(
-      { eventName, companyId, userEmail }, // job to be enqueued
-      { delay: '24h' }, // scheduling options
-    );
+    await inngest.send({
+      name: 'player/scored.event',
+      data: {
+        playerId,
+        eventId,
+        companyId,
+      },
+    });
 
     return {
       status: 200,

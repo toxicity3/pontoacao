@@ -1,9 +1,8 @@
-import { Inngest } from 'inngest';
 import { asHandler, endpoint } from 'next-better-api';
 import { z } from 'zod';
 import { prisma } from '@acme/db';
 
-const inngest = new Inngest({ name: 'My App' });
+import { inngest } from '~/utils/inngest';
 
 const scoredEvent = endpoint(
   {

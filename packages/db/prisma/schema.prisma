@@ -27,6 +27,8 @@ model Employee {
   email String
   companyId String
   roleId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   company Company @relation(fields: [companyId], references: [id])
   role    Role    @relation(fields: [roleId], references: [id])
@@ -64,10 +66,12 @@ model Event {
   name        String
   description String
   score       Int
-  initialDate DateTime
-  finalDate   DateTime
+  initialDate DateTime?
+  finalDate   DateTime?
   slug        String
   companyId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   company        Company          @relation(fields: [companyId], references: [id])
   PlayerHasEvent PlayerHasEvent[]
@@ -81,8 +85,8 @@ model Achievement {
   name      String
   slug      String
   eventId   String
-  createdAt String
-  updatedAt String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   event Event @relation(fields: [eventId], references: [id])
 
@@ -93,6 +97,8 @@ model PlayerHasEvent {
   playerId String
   eventId  String
   score Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   event  Event   @relation(fields: [eventId], references: [id])
   player Player  @relation(fields: [playerId], references: [id])

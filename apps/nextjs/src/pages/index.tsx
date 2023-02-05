@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 
 import { Carousel } from '~/components/Carousel';
 import { Footer } from '~/components/Footer';
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
                 >
                   <path
                     d="M11.252 1.152C4.184 2.526.454 6.918.061 14.329c1.963-4.049 4.798-5.975 8.503-5.778 2.115.112 3.84 1.295 5.75 2.603 3.11 2.133 6.712 4.601 13.281 3.324 7.068-1.374 10.798-5.766 11.191-13.177-1.963 4.049-4.798 5.975-8.503 5.779-2.115-.113-3.84-1.296-5.75-2.604-3.11-2.133-6.712-4.601-13.281-3.324z"
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                   ></path>
                 </svg>
               </a>
@@ -58,9 +58,9 @@ const Home: NextPage = () => {
                       className="w-5 h-5"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z"
-                        clip-rule="evenodd"
+                        clipRule="evenodd"
                       />
                     </svg>
                   </button>

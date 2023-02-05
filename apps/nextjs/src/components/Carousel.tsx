@@ -8,6 +8,8 @@ export function Carousel() {
         <Image
           alt="image"
           src="https://harbingerlearning.com/wp-content/uploads/2022/11/7.jpg"
+          fill={true}
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </AspectRatio>
     </div>

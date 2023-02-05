@@ -5,12 +5,19 @@ import { createTRPCRouter, publicProcedure } from '../trpc';
 
 export const playerRouter = createTRPCRouter({
   achievedEvent: publicProcedure
-    .input(z.object({ playerId: z.string(), eventId: z.string() }))
+    .input(
+      z.object({
+        playerId: z.string(),
+        eventId: z.string(),
+        score: z.number().min(1),
+      }),
+    )
     .mutation(async ({ ctx, input }) => {
       return ctx.prisma.playerHasEvent.create({
         data: {
           playerId: input.playerId,
           eventId: input.eventId,
+          score: input.score,
         },
       });
     }),
@@ -29,25 +36,4 @@ export const playerRouter = createTRPCRouter({
       },
     });
   }),
-  sortByScore: publicProcedure
-    .input(
-      z.object({
-        companyId: z.string(),
-        page: z.number().default(1),
-        limit: z.number().default(10),
-      }),
-    )
-    .query(({ ctx, input }) => {
-      return ctx.prisma.event.groupBy({
-        by: ['playerId'],
-        _sum: {
-          score: true,
-        },
-        page: input.page,
-        limit: input.limit,
-        where: {
-          companyId: input.companyId,
-        },
-      });
-    }),
 });

@@ -1,6 +1,54 @@
+import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+
+import { api } from '~/utils/api';
 import { Checkbox } from './Checkbox';
 
+type Inputs = {
+  email: string;
+  beta: boolean;
+};
+
 export function Panel() {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>({
+    defaultValues: {
+      email: '',
+      beta: true,
+    },
+  });
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await mutate(data);
+  };
+
+  const { mutate } = api.betaSubscriber.create.useMutation({
+    async onSuccess() {
+      if (getValues('beta')) {
+        toast.custom((t) => (
+          <div
+            className={`dark:bg-pink-500 dark:text-slate-100 px-6 dark:py-4 dark:shadow-md dark:rounded-full`}
+          >
+            Muito obrigado pelo interesse! Entraremos em contato em breve!
+          </div>
+        ));
+      } else {
+        toast.custom((t) => (
+          <div className={`bg-white px-6 py-4 shadow-md rounded-full`}>
+            Muito obrigado! Entraremos em contato assim que lançarmos o beta!
+          </div>
+        ));
+      }
+      reset();
+    },
+  });
+
   return (
     <div className="h-full w-full flex flex-col justify-center items-start sm:items-center lg:items-start max-w-2xl mx-auto lg:mx-0 px-8 sm:pl-24 pr-10 space-y-8">
       <div className="relative overflow-hidden z-20 inline-block rounded-full py-1.5 px-5 font-medium text-xs leading-6 bg-gray-100">
@@ -42,13 +90,14 @@ export function Panel() {
         missões, desafios e competições que engajem seus clientes e
         colaboradores.
       </p>
-      <form
-        className="w-full"
-        method="post"
-        onSubmit={() => console.log('hello, world')}
-      >
+      <form className="w-full" method="post" onSubmit={handleSubmit(onSubmit)}>
         <div className="z-20 relative sm:mx-auto sm:max-w-lg sm:text-center lg:mx-0 lg:text-left w-full">
-          <Checkbox id="terms" />
+          <Checkbox
+            id="terms"
+            {...register('beta')}
+            checked={getValues().beta}
+            onCheckedChange={(e) => setValue('beta', Boolean(e))}
+          />
           <label
             htmlFor="terms"
             className="text-sm ml-2 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -65,10 +114,10 @@ export function Panel() {
               <div className="relative group w-full">
                 <input
                   id="email"
-                  name="email"
                   type="email"
                   className="block w-full transition duration-75 caret-pink-500 border border-pink-200 rounded-md shadow-sm transition ease-out duration-500 focus:border-pink-500 focus:ring focus:ring-pink-600 focus:ring-opacity-20 border-slate-300 h-11 pl-4 w-full placeholder:italic placeholder:text-slate-300"
                   placeholder="Coloque seu e-mail aqui"
+                  {...register('email', { required: true })}
                 />
               </div>
             </div>

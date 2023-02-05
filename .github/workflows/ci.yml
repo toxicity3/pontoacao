@@ -56,8 +56,8 @@ jobs:
         env:
           SKIP_ENV_VALIDATION: true
           DATABASE_URL: dburl
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_c2hhcmluZy13ZXJld29sZi01Ni5jbGVyay5hY2NvdW51hw8kKDWr
-          CLERK_SECRET_KEY: sk_test_iUs6wzajVTF4omtWsz7JOEPIk1d1IfDxKN3HbrmJIv
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_c2hhcmluZy13ZXJld29sZi01Ni5jbGVyay5hY2NvdW50cy5kZXYk
+          CLERK_SECRET_KEY: any key
           INNGEST_EVENT_KEY: any key
 
       # FIXME: Add this back once we have an Expo SDK supporting React 18.2

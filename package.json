@@ -29,7 +29,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "react-native@0.70.5": "patches/react-native@0.70.5.patch"
+      "react-native@0.70.5": "patches/react-native@0.70.5.patch",
+      "next-better-api@0.1.5": "patches/next-better-api@0.1.5.patch"
     }
   }
 }

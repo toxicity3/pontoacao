@@ -1,0 +1,32 @@
+diff --git a/build/src/index.js b/build/src/index.js
+index e40cfc5cf93cd85ba02a6d26ac3901599c763788..61d048cbd8652bb978afb5e4c4c70cc5c6631953 100644
+--- a/build/src/index.js
++++ b/build/src/index.js
+@@ -22,7 +22,7 @@ const schemaValidationErrors = (handlers, req) => {
+     const method = (_a = req.method) === null || _a === void 0 ? void 0 : _a.toLowerCase();
+     const querySchema = (_b = handlers[method]) === null || _b === void 0 ? void 0 : _b.querySchema;
+     const bodySchema = (_c = handlers[method]) === null || _c === void 0 ? void 0 : _c.bodySchema;
+-    const errorResponse = ({ errors }) => JSON.stringify({
++    const errorResponse = ({ errors }) => ({
+         errors,
+     });
+     if (querySchema) {
+@@ -48,7 +48,7 @@ exports.schemaValidationErrors = schemaValidationErrors;
+ const decorateHandler = (handler, decorators) => decorators.reduce((wrappedHandler, decorator) => decorator(wrappedHandler), handler);
+ const validateEndpointSchemaForRequest = (endpointDef, req) => {
+     const { querySchema, bodySchema } = endpointDef;
+-    const errorResponse = ({ errors }) => JSON.stringify({
++    const errorResponse = ({ errors }) => ({
+         errors,
+     });
+     if (querySchema) {
+@@ -92,8 +92,7 @@ const asHandler = (endpoints, options = {}) => {
+             const { handler } = endpointDef;
+             const schemaValidationErrors = validateEndpointSchemaForRequest(endpointDef, req);
+             if (schemaValidationErrors) {
+-                res.status(400).end(schemaValidationErrors);
+-                return;
++                return res.status(400).json(schemaValidationErrors);
+             }
+             const endpointContext = endpointDef.context
+                 ? yield endpointDef.context(routeContext)

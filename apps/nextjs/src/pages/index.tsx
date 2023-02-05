@@ -1,4 +1,6 @@
 import { NextPage } from 'next';
+import Image from 'next/image';
+import { Link } from 'lucide-react';
 
 import { Carousel } from '~/components/Carousel';
 import { Footer } from '~/components/Footer';
@@ -27,24 +29,24 @@ const Home: NextPage = () => {
               <div className="flex items-center justify-between">
                 <ul className="sm:flex hidden space-x-8 mr-10 pr-10 border-r border-gray-200 text-sm font-medium">
                   <li>
-                    <a href="/" className="hover:text-pink-500">
+                    <Link href="/" className="hover:text-pink-500">
                       Home
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/blog" className="hover:text-pink-500">
+                    <Link href="/blog" className="hover:text-pink-500">
                       Blog
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/about" className="hover:text-pink-500">
+                    <Link href="/about" className="hover:text-pink-500">
                       About
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="/login" className="hover:text-pink-500">
+                    <Link href="/login" className="hover:text-pink-500">
                       Login
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <div className="w-auto sm:hidden block mr-3">
@@ -328,11 +330,19 @@ const Home: NextPage = () => {
 
             <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
               <div className="relative h-64 overflow-hidden sm:h-80 lg:h-full">
-                <img
+                <Image
+                  src={
+                    'https://images.unsplash.com/photo-1496843916299-590492c751f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80'
+                  }
+                  alt="Party"
+                  fill={true}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+                {/* <img
                   alt="Party"
                   src="https://images.unsplash.com/photo-1496843916299-590492c751f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80"
                   className="absolute inset-0 h-full w-full object-cover"
-                />
+                /> */}
               </div>
 
               <div className="lg:py-16">

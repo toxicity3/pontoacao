@@ -35,9 +35,9 @@ export function Panel() {
         </span>
       </h1>
       <p className="text-base relative z-20 text-white sm:text-xl lg:text-lg xl:text-xl text-left sm:text-center lg:text-left">
-        This is an example "coming soon" page for your application. It's
-        important to build a list of customers before you launch. It's also a
-        great way to keep users informed on progress.
+        This is an example &quot;coming soon&quot; page for your application.
+        It&apos;s important to build a list of customers before you launch.
+        It&apos;s also a great way to keep users informed on progress.
       </p>
       <div className="z-20 relative sm:mx-auto sm:max-w-lg sm:text-center lg:mx-0 lg:text-left w-full">
         <form

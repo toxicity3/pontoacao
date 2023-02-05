@@ -23,13 +23,13 @@ const getEventById = endpoint(
         finalDate: z.date().nullable(),
         limit: z.number().nullable(),
         limitPerPlayer: z.number().nullable(),
-        score: z.number().min(1),
+        score: z.number(),
       }),
     ]),
   },
-  async ({ query, body }) => {
+  async ({ query }) => {
     const event = await trpcCaller.event.getByIdAndCompanyId({
-      ...body,
+      id: query.eventId,
       companyId: query.companyId,
     });
     if (!event) {

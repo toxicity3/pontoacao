@@ -1,4 +1,3 @@
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { asHandler, endpoint } from 'next-better-api';
 import { z } from 'zod';
 import { prisma } from '@acme/db';

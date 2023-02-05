@@ -1,5 +1,5 @@
 import { asHandler, endpoint } from 'next-better-api';
-import { nullable, z } from 'zod';
+import { z } from 'zod';
 import { Event } from '@acme/db';
 
 import { trpcCaller } from './../../../trpc/[trpc]';

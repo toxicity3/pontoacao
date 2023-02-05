@@ -91,4 +91,4 @@ const getEvents = endpoint(
   },
 );
 
-export default asHandler([createEvent, getEvents]);
+export default asHandler([getEventById, getEvents]);

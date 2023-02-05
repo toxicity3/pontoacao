@@ -28,7 +28,7 @@ export function Card({ title, description }: CardProps) {
 
       <h2 className="mt-4 text-xl font-bold text-white">{title}</h2>
 
-      <p className="mt-1 text-sm text-gray-300">{description}</p>
+      <p className="mt-1 text-base text-gray-300">{description}</p>
     </a>
   );
 }

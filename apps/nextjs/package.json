@@ -19,6 +19,7 @@
     "@clerk/nextjs": "^4.8.1",
     "@clerk/themes": "^1.2.40",
     "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-checkbox": "^1.0.1",
     "@radix-ui/react-icons": "^1.1.1",
     "@radix-ui/react-navigation-menu": "^1.1.1",
     "@tanstack/react-query": "^4.23.0",

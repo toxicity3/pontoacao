@@ -101,6 +101,7 @@ importers:
       '@clerk/nextjs': ^4.8.1
       '@clerk/themes': ^1.2.40
       '@radix-ui/colors': ^0.1.8
+      '@radix-ui/react-checkbox': ^1.0.1
       '@radix-ui/react-icons': ^1.1.1
       '@radix-ui/react-navigation-menu': ^1.1.1
       '@tanstack/react-query': ^4.23.0
@@ -147,6 +148,7 @@ importers:
       '@clerk/nextjs': 4.8.1_3vryta7zmbcsw4rrqf4axjqggm
       '@clerk/themes': 1.2.40_react@18.2.0
       '@radix-ui/colors': 0.1.8
+      '@radix-ui/react-checkbox': 1.0.1_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-icons': 1.1.1_react@18.2.0
       '@radix-ui/react-navigation-menu': 1.1.1_biqbaboplfbrettd7655fr4n2y
       '@tanstack/react-query': 4.24.4_biqbaboplfbrettd7655fr4n2y
@@ -162,7 +164,7 @@ importers:
       lucide-react: 0.108.0_react@18.2.0
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.1_3vryta7zmbcsw4rrqf4axjqggm
-      next-better-api: 0.1.5_next@13.1.6+zod@3.20.2
+      next-better-api: 0.1.5_adq57llrqe5lgtjgtcpxiitgxe_next@13.1.6+zod@3.20.2
       next-themes: 0.2.1_3vryta7zmbcsw4rrqf4axjqggm
       quirrel: 1.13.1
       react: 18.2.0
@@ -2664,6 +2666,25 @@ packages:
       '@radix-ui/react-primitive': 1.0.1
     dev: false
 
+  /@radix-ui/react-checkbox/1.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-TisH0B8hWmYP3ONRduYCyN04rR9yLPIw/Rwyn1RoC1suSoGCa8Wn+YPdSSSarSszeIbcg3p2lBkDp2XXit4sZw==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@radix-ui/primitive': 1.0.0
+      '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
+      '@radix-ui/react-context': 1.0.0_react@18.2.0
+      '@radix-ui/react-presence': 1.0.0_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-primitive': 1.0.1_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-use-controllable-state': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-previous': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-size': 1.0.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@radix-ui/react-collection/1.0.1_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-uuiFbs+YCKjn3X1DTSx9G7BHApu4GHbi3kgiwsnFUbOKCrwejAJv4eE4Vc8C0Oaxt9T0aV4ox0WCOdx+39Xo+g==}
     peerDependencies:
@@ -2871,6 +2892,16 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
       '@babel/runtime': 7.20.13
+      react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-use-size/1.0.0_react@18.2.0:
+    resolution: {integrity: sha512-imZ3aYcoYCKhhgNpkNDh/aTiU05qw9hX+HHI1QDBTyIlcFjgeFlKKySNGMwTp7nYFLQg/j0VA2FmCY4WPDDHMg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.20.13
+      '@radix-ui/react-use-layout-effect': 1.0.0_react@18.2.0
       react: 18.2.0
     dev: false
 
@@ -8465,7 +8496,7 @@ packages:
       uuid: 8.3.2
     dev: false
 
-  /next-better-api/0.1.5_next@13.1.6+zod@3.20.2:
+  /next-better-api/0.1.5_adq57llrqe5lgtjgtcpxiitgxe_next@13.1.6+zod@3.20.2:
     resolution: {integrity: sha512-GNXzlDltMHglgoru0qyd+caR3mmtWbSMo2naSVAPnHi6oFzvJPyziE92rECQEtjnPviKji2hmgfAhYQOXWo2QA==}
     peerDependencies:
       next: ^12.*
@@ -8474,6 +8505,7 @@ packages:
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       zod: 3.20.2
     dev: false
+    patched: true
 
   /next-themes/0.2.1_3vryta7zmbcsw4rrqf4axjqggm:
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}

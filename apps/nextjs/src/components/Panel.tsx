@@ -26,8 +26,8 @@ export function Panel() {
               >
                 <path
                   d="M2 6c39.898-3.018 133.755-7.244 190 0"
-                  stroke-width="4"
-                  stroke-linecap="round"
+                  strokeWidth="4"
+                  strokeLinecap="round"
                 ></path>
               </svg>
             </span>

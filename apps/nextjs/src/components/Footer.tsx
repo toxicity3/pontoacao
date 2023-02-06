@@ -2,7 +2,7 @@ export function Footer() {
   return (
     <footer>
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-        <nav className="flex flex-wrap justify-center -mx-5 -my-2">
+        {/* <nav className="flex flex-wrap justify-center -mx-5 -my-2">
           <div className="px-5 py-2">
             <a
               href="#"
@@ -51,8 +51,8 @@ export function Footer() {
               Terms
             </a>
           </div>
-        </nav>
-        <div className="flex justify-center mt-8 space-x-6">
+        </nav> */}
+        {/* <div className="flex justify-center mt-8 space-x-6">
           <a href="#" className="text-pink-500 hover:text-pink-900">
             <span className="sr-only">Facebook</span>
             <svg
@@ -124,9 +124,9 @@ export function Footer() {
               />
             </svg>
           </a>
-        </div>
+        </div> */}
         <p className="mt-8 text-base leading-6 text-center">
-          &copy; 2021 SomeCompany, Inc. All rights reserved.
+          &copy; 2023 Ponto.Ação. Todos os direitos reservados.
         </p>
       </div>
     </footer>

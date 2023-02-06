@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { api } from '~/utils/api';
 import { Checkbox } from './Checkbox';
 
-type Inputs = {
+type BetaForm = {
   email: string;
   beta: boolean;
 };
@@ -16,34 +16,47 @@ export function Panel() {
     setValue,
     getValues,
     reset,
+    watch,
     formState: { errors },
-  } = useForm<Inputs>({
+  } = useForm<BetaForm>({
     defaultValues: {
       email: '',
-      beta: true,
+      beta: false,
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<BetaForm> = async (data) => {
     await mutate(data);
   };
 
   const { mutate } = api.betaSubscriber.create.useMutation({
     async onSuccess() {
       if (getValues('beta')) {
-        toast.custom((t) => (
-          <div
-            className={`dark:bg-pink-500 dark:text-slate-100 px-6 dark:py-4 dark:shadow-md dark:rounded-full`}
-          >
-            Muito obrigado pelo interesse! Entraremos em contato em breve!
-          </div>
-        ));
+        toast.custom(
+          (t) => (
+            <div
+              className={`font-bold px-6 py-4 shadow-md rounded-full dark:bg-gray-700 dark:text-pink-500 ${
+                t.visible ? 'animate-in slide-in-from-top' : 'animate-leave'
+              }`}
+            >
+              Entraremos em contato em breve!
+            </div>
+          ),
+          { id: 'beta', position: 'top-right' },
+        );
       } else {
-        toast.custom((t) => (
-          <div className={`bg-white px-6 py-4 shadow-md rounded-full`}>
-            Muito obrigado! Entraremos em contato assim que lançarmos o beta!
-          </div>
-        ));
+        toast.custom(
+          (t) => (
+            <div
+              className={`font-bold px-6 py-4 shadow-md rounded-full dark:bg-gray-700 dark:text-pink-500 ${
+                t.visible ? 'animate-enter' : 'animate-leave'
+              }`}
+            >
+              Muito obrigado!
+            </div>
+          ),
+          { id: 'beta', position: 'top-right' },
+        );
       }
       reset();
     },
@@ -51,7 +64,7 @@ export function Panel() {
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-start sm:items-center lg:items-start max-w-2xl mx-auto lg:mx-0 px-8 sm:pl-24 pr-10 space-y-8">
-      <div className="relative overflow-hidden z-20 inline-block rounded-full py-1.5 px-5 font-medium text-xs leading-6 bg-gray-100">
+      {/* <div className="relative overflow-hidden z-20 inline-block rounded-full py-1.5 px-5 font-medium text-xs leading-6 bg-gray-100">
         <span className="text-gray-600">Já já estaremos em beta!</span>
         <a
           href="#"
@@ -60,7 +73,7 @@ export function Panel() {
           <span className="absolute inset-0" aria-hidden="true"></span>
           Saiba mais <span aria-hidden="true">→</span>
         </a>
-      </div>
+      </div> */}
       <h1 className="relative z-20 w-full text-left sm:text-center lg:text-left selection:bg-pink-900">
         <span className="block text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl">
           <span className="block text-white">Transforme sua</span>
@@ -93,13 +106,13 @@ export function Panel() {
       <form className="w-full" method="post" onSubmit={handleSubmit(onSubmit)}>
         <div className="z-20 relative sm:mx-auto sm:max-w-lg sm:text-center lg:mx-0 lg:text-left w-full">
           <Checkbox
-            id="terms"
+            id="beta"
             {...register('beta')}
-            checked={getValues().beta}
+            checked={watch('beta')}
             onCheckedChange={(e) => setValue('beta', Boolean(e))}
           />
           <label
-            htmlFor="terms"
+            htmlFor="beta"
             className="text-sm ml-2 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             Por favor, me chame para o beta!

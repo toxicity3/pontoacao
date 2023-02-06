@@ -76,10 +76,10 @@ const Home: NextPage = () => {
 
           <main className="w-screen h-screen bg-gray-900 lg:overflow-hidden">
             <div className="w-full relative lg:h-screen lg:pt-0 pt-32 flex">
-              <div className="lg:w-1/2 w-full h-full flex justify-end">
+              <div className="lg:w-full w-full h-full flex justify-center">
                 <Panel />
               </div>
-              <div className="w-1/2 h-screen lg:block hidden">
+              <div className="w-1/2 h-screen lg:hidden hidden">
                 <Carousel />
               </div>
             </div>

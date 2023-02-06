@@ -25,7 +25,7 @@ export function GenericLayout({
   return (
     <main
       className={cn(
-        'flex h-screen flex-col items-center h-100 data-theme:dark',
+        'flex h-screen flex-col items-center h-100 data-theme:dark overflow-x-hidden',
         className,
       )}
     >

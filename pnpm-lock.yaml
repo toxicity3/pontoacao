@@ -124,7 +124,7 @@ importers:
       eslint-config-next: ^13.1.6
       inngest: ^0.9.3
       inngest-cli: ^0.9.2
-      lucide-react: ^0.108.0
+      lucide-react: ^0.125.0
       next: ^13.1.6
       next-auth: ^4.19.0
       next-better-api: ^0.1.5
@@ -165,7 +165,7 @@ importers:
       clsx: 1.2.1
       inngest: 0.9.3
       inngest-cli: 0.9.2
-      lucide-react: 0.108.0_react@18.2.0
+      lucide-react: 0.125.0_react@18.2.0
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.19.1_3vryta7zmbcsw4rrqf4axjqggm
       next-better-api: 0.1.5_adq57llrqe5lgtjgtcpxiitgxe_next@13.1.6+zod@3.20.2
@@ -7860,8 +7860,8 @@ packages:
     resolution: {integrity: sha512-Pn9cox5CsMYngeDbmChANltQl+5pi6XmTrraMSzhPmMBbmgcxmqWry0U3PGapCU1yB4/LqCcom7qhHZiF/jGfQ==}
     dev: false
 
-  /lucide-react/0.108.0_react@18.2.0:
-    resolution: {integrity: sha512-dL8F1DZibvqcWRhCrMghFSYpovsKLcoAcLbh1oZNWo1UxadrDesl8K8Eh6qYrWJwvj95bdSA69ZKc8k+KRxrvg==}
+  /lucide-react/0.125.0_react@18.2.0:
+    resolution: {integrity: sha512-tadphtB6TPytEitR9vX75hqu9PQT/uz5RcvXMq976nC190eukAM9+cHMgBxfvfEGDXwIhIT9aFxTUGdAjxw9uQ==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:

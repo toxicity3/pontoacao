@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
-  react-native@0.70.5:
-    hash: rnbco5eodjkfp6ucueusre3z4i
-    path: patches/react-native@0.70.5.patch
   next-better-api@0.1.5:
     hash: adq57llrqe5lgtjgtcpxiitgxe
     path: patches/next-better-api@0.1.5.patch
+  react-native@0.70.5:
+    hash: rnbco5eodjkfp6ucueusre3z4i
+    path: patches/react-native@0.70.5.patch
 
 importers:
 

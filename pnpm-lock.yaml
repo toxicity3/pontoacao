@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
-  react-native@0.70.5:
-    hash: rnbco5eodjkfp6ucueusre3z4i
-    path: patches/react-native@0.70.5.patch
   next-better-api@0.1.5:
     hash: adq57llrqe5lgtjgtcpxiitgxe
     path: patches/next-better-api@0.1.5.patch
+  react-native@0.70.5:
+    hash: rnbco5eodjkfp6ucueusre3z4i
+    path: patches/react-native@0.70.5.patch
 
 importers:
 
@@ -201,7 +201,7 @@ importers:
       '@trpc/client': ^10.9.0
       '@trpc/server': ^10.9.0
       eslint: ^8.32.0
-      superjson: 1.9.1
+      superjson: 1.13.3
       typescript: ^4.9.4
       zod: ^3.20.2
     dependencies:
@@ -209,7 +209,7 @@ importers:
       '@acme/db': link:../db
       '@trpc/client': 10.9.1_@trpc+server@10.9.1
       '@trpc/server': 10.9.1
-      superjson: 1.9.1
+      superjson: 1.13.3
       zod: 3.20.2
     devDependencies:
       eslint: 8.33.0
@@ -10836,8 +10836,8 @@ packages:
       copy-anything: 3.0.3
     dev: false
 
-  /superjson/1.9.1:
-    resolution: {integrity: sha512-oT3HA2nPKlU1+5taFgz/HDy+GEaY+CWEbLzaRJVD4gZ7zMVVC4GDNFdgvAZt6/VuIk6D2R7RtPAiCHwmdzlMmg==}
+  /superjson/1.13.3:
+    resolution: {integrity: sha512-mJiVjfd2vokfDxsQPOwJ/PtanO87LhpYY88ubI5dUB1Ab58Txbyje3+jpm+/83R/fevaq/107NNhtYBLuoTrFg==}
     engines: {node: '>=10'}
     dependencies:
       copy-anything: 3.0.3

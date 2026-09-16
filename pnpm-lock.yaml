@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 patchedDependencies:
-  react-native@0.70.5:
-    hash: rnbco5eodjkfp6ucueusre3z4i
-    path: patches/react-native@0.70.5.patch
   next-better-api@0.1.5:
     hash: adq57llrqe5lgtjgtcpxiitgxe
     path: patches/next-better-api@0.1.5.patch
+  react-native@0.70.5:
+    hash: rnbco5eodjkfp6ucueusre3z4i
+    path: patches/react-native@0.70.5.patch
 
 importers:
 
@@ -60,7 +60,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0
       react-native: 0.70.5
-      react-native-safe-area-context: 4.4.1
+      react-native-safe-area-context: 4.14.1
       tailwindcss: ^3.2.4
       typescript: ^4.9.4
     dependencies:
@@ -78,7 +78,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-native: 0.70.5_rnbco5eodjkfp6ucueusre3z4i_lahc5xespok57ijioavxabv3he
-      react-native-safe-area-context: 4.4.1_tj3nonr5gneraukzjkxpsiy7yu
+      react-native-safe-area-context: 4.14.1_tj3nonr5gneraukzjkxpsiy7yu
     devDependencies:
       '@babel/core': 7.20.12
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
@@ -9783,8 +9783,8 @@ packages:
     resolution: {integrity: sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A==}
     dev: false
 
-  /react-native-safe-area-context/4.4.1_tj3nonr5gneraukzjkxpsiy7yu:
-    resolution: {integrity: sha512-N9XTjiuD73ZpVlejHrUWIFZc+6Z14co1K/p1IFMkImU7+avD69F3y+lhkqA2hN/+vljdZrBSiOwXPkuo43nFQA==}
+  /react-native-safe-area-context/4.14.1_tj3nonr5gneraukzjkxpsiy7yu:
+    resolution: {integrity: sha512-+tUhT5WBl8nh5+P+chYhAjR470iCByf9z5EYdCEbPaAK3Yfzw+o8VRPnUgmPAKlSccOgQBxx3NOl/Wzckn9ujg==}
     peerDependencies:
       react: '*'
       react-native: '*'
